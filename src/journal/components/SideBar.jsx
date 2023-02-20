@@ -34,8 +34,8 @@ export const SideBar = ({ drawerWith }) => {
         </Toolbar>
         <Divider />
         <List>
-          {["Enero", "Febrero", "Marzo", "Abril"].map((text) => (
-            <ListItem>
+          {["Enero", "Febrero", "Marzo", "Abril"].map((text, key) => (
+            <ListItem key={key}>
               <ListItemButton>
                 <ListItemIcon>
                   <TurnedInNot />
