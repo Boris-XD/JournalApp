@@ -9,10 +9,20 @@ const formData = {
   displayName: "Boris XD"
 };
 
+const formValidations = {
+  email: [ (value) => value.includes('@'), 'El correo debe de tener una @.'],
+  password: [ (value) => value.length >= 6, 'El password debe de tener mas de 6 letras.'],
+  displayName: [ (value) => value.length >= 1, 'El nombre es obligatorio.']
+}
+
 export const RegisterPage = () => {
 
-  const { displayName, email, password, onInputChange, formState } = useForm(formData);
+  const { displayName, email, password, onInputChange, formState, 
+    isFormValid, displayNameValid, emailValid, passwordValid
+   } = useForm(formData, formValidations);
 
+   console.log(displayNameValid);
+   
   const onSubmit = (event) => {
     event.preventDefault();
     console.log(formState);
@@ -31,6 +41,8 @@ export const RegisterPage = () => {
               name="displayName"
               value={ displayName }
               onChange={ onInputChange }
+              error = {!displayNameValid}
+              helperText = {displayNameValid}
             />
           </Grid>
           <Grid item xs={12} sx={{ mt: 2 }}>
@@ -42,6 +54,8 @@ export const RegisterPage = () => {
               name="email"
               value={ email }
               onChange={ onInputChange }
+              error = {!emailValid}
+              helperText = {emailValid}
             />
           </Grid>
           <Grid item xs={12} sx={{ mt: 2 }}>
@@ -53,6 +67,8 @@ export const RegisterPage = () => {
               name="password"
               value={ password }
               onChange={ onInputChange }
+              error = {!passwordValid}
+              helperText = {passwordValid}
             />
           </Grid>
           <Grid container spacing={2} sx={{ mb: 1, mt: 1 }}>
